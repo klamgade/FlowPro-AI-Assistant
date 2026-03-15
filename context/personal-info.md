@@ -6,7 +6,7 @@ Kamal Lamgade
 
 ## Role
 
-Founder building a practical AI services capability focused on helping SMB owners and consultants adopt AI in everyday work.
+AI Solution Strategist and Architect building a practical AI services capability focused on helping SMB owners and consultants adopt AI in everyday work.
 
 This workspace is used as a **working environment** to design, test, and deliver AI productivity solutions.
 
