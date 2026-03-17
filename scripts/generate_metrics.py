@@ -96,6 +96,25 @@ def section_fx_rates(conn):
     return lines
 
 
+def section_google_analytics(conn):
+    """Website traffic from GA4."""
+    if not table_exists(conn, "ga4_daily"):
+        return []
+    lines = ["## Website Traffic (flow-pro.com.au)"]
+    row = query_one(conn, "SELECT * FROM ga4_daily ORDER BY date DESC LIMIT 1")
+    if row:
+        lines.append("| Metric | Value | As Of |")
+        lines.append("|--------|-------|-------|")
+        lines.append(f"| Sessions | {fmt_number(row['sessions'])} | {row['date']} |")
+        lines.append(f"| Users | {fmt_number(row['total_users'])} | {row['date']} |")
+        lines.append(f"| New Users | {fmt_number(row['new_users'])} | {row['date']} |")
+        lines.append(f"| Page Views | {fmt_number(row['page_views'])} | {row['date']} |")
+        if row['engagement_rate'] is not None:
+            lines.append(f"| Engagement Rate | {fmt_pct(row['engagement_rate'] * 100)} | {row['date']} |")
+    lines.append("")
+    return lines
+
+
 # --- CUSTOMIZATION ZONE ---
 # Claude adds your custom section functions below during installation.
 # Each follows the same pattern:
@@ -117,9 +136,9 @@ def section_fx_rates(conn):
 # Register all section functions here. Claude adds new ones during install.
 SECTIONS = [
     section_fx_rates,
+    section_google_analytics,
     # section_youtube,
     # section_stripe,
-    # section_google_analytics,
     # section_marketing,
 ]
 

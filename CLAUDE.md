@@ -149,11 +149,31 @@ When reviewing ideas, ask:
 ### `context/`
 Contains core context Claude should use to understand the operator, business, strategy, and current phase.
 
-Expected files include:
+Files include:
 - `personal-info.md`
 - `business-info.md`
 - `strategy.md`
 - `current-data.md`
+- `group/key-metrics.md` — **Auto-generated current metrics (from database, refreshes daily)**
+
+### `data/`
+SQLite database — all business metrics, daily snapshots.
+- `data.db` — the database (gitignored — never committed)
+- `collect.log` — daily collection run log
+
+### `scripts/`
+Data collection pipeline:
+- `db.py` — database framework and connection helpers
+- `config.py` — environment variable loader
+- `collect.py` — collection orchestrator (runs all collectors)
+- `collect_fx_rates.py` — FX rates (no auth needed)
+- `collect_google_analytics.py` — GA4 website traffic for flow-pro.com.au
+- `generate_metrics.py` — regenerates `context/group/key-metrics.md`
+- `requirements.txt` — Python dependencies
+- `examples/` — reference collector implementations
+
+### `credentials/`
+Google Service Account JSON and other credential files (gitignored — never committed).
 
 ### `plans/`
 Contains execution plans, sprint plans, rollout plans, and service design plans.
@@ -161,14 +181,30 @@ Contains execution plans, sprint plans, rollout plans, and service design plans.
 ### `reference/`
 Contains reusable service assets and knowledge used during delivery.
 
-Suggested subfolders:
+Subfolders:
 - `ai-workflows/`
 - `examples/`
 - `service-delivery/`
 - `prompt-library/`
+- `data-access.md` — Full table schemas, SQL query examples, collection details
 
 ### `outputs/`
 Contains generated deliverables, pilot notes, and session outputs.
+
+## Data Warehouse
+
+All business metrics are collected daily into `data/data.db` (SQLite).
+
+- `key-metrics.md` is auto-generated and loaded by `/prime` each session
+- For direct database queries, load `reference/data-access.md` for table schemas and example SQL
+- Claude can run SQL directly via Python: `.venv/bin/python -c "import sqlite3; ..."`
+- To manually refresh data: `.venv/bin/python scripts/collect.py`
+- Collection runs automatically at 6:00 AM daily (macOS launchd)
+
+**Connected sources:**
+- `fx_rates` — daily FX rates (USD base, 7 currencies)
+- `ga4_daily` — website traffic for flow-pro.com.au (sessions, users, page views)
+- `ga4_sources` — traffic source breakdown
 
 ---
 
