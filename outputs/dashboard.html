@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIOS Dashboard</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e0e0e0; padding: 24px; }
+  h1 { font-size: 1.4rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .subtitle { font-size: 0.8rem; color: #666; margin-bottom: 28px; }
+  h2 { font-size: 0.85rem; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+  .section { margin-bottom: 36px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 28px; }
+  .card { background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 10px; padding: 18px 20px; }
+  .card .label { font-size: 0.72rem; color: #666; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .card .value { font-size: 1.8rem; font-weight: 700; color: #fff; }
+  .card .sub { font-size: 0.72rem; color: #555; margin-top: 4px; }
+  .chart-box { background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 10px; padding: 20px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  th { text-align: left; padding: 8px 12px; font-size: 0.72rem; color: #555; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #2a2d3a; }
+  td { padding: 9px 12px; border-bottom: 1px solid #1e2130; color: #ccc; }
+  tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+  .badge.success { background: #0d2e1a; color: #4ade80; }
+  .badge.error { background: #2e0d0d; color: #f87171; }
+  .badge.skipped { background: #1e1e0d; color: #facc15; }
+  @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<h1>AIOS Dashboard</h1>
+<p class="subtitle">flow-pro.com.au &nbsp;·&nbsp; Generated 2026-03-16 09:59 UTC</p>
+
+<div class="section">
+  <h2>Website — 2026-03-15</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="label">Sessions</div>
+      <div class="value">3</div>
+      <div class="sub">yesterday</div>
+    </div>
+    <div class="card">
+      <div class="label">Users</div>
+      <div class="value">3</div>
+      <div class="sub">yesterday</div>
+    </div>
+    <div class="card">
+      <div class="label">New Users</div>
+      <div class="value">3</div>
+      <div class="sub">yesterday</div>
+    </div>
+    <div class="card">
+      <div class="label">Page Views</div>
+      <div class="value">806</div>
+      <div class="sub">yesterday</div>
+    </div>
+    <div class="card">
+      <div class="label">Engagement</div>
+      <div class="value">33.3%</div>
+      <div class="sub">rate</div>
+    </div>
+    <div class="card">
+      <div class="label">Avg Session</div>
+      <div class="value">112.1m</div>
+      <div class="sub">duration</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Traffic Trend</h2>
+  <div class="chart-box">
+    <div id="chart-trend"></div>
+  </div>
+</div>
+
+<div class="section grid-2">
+  <div>
+    <h2>Traffic Sources</h2>
+    <div class="chart-box">
+      <div id="chart-sources"></div>
+    </div>
+  </div>
+  <div>
+    <h2>Engagement Rate</h2>
+    <div class="chart-box">
+      <div id="chart-engagement"></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>FX Rates (USD base · 2026-03-13)</h2>
+  <div class="chart-box">
+    <div id="chart-fx"></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Collection Log</h2>
+  <div class="chart-box">
+    <table>
+      <thead><tr><th>Source</th><th>Status</th><th>Records</th><th>Collected At</th></tr></thead>
+      <tbody><tr>
+          <td>google_analytics</td>
+          <td><span class="badge success">success</span></td>
+          <td>2</td>
+          <td>2026-03-16 09:59:17</td>
+        </tr><tr>
+          <td>fx_rates</td>
+          <td><span class="badge success">success</span></td>
+          <td>7</td>
+          <td>2026-03-16 09:59:14</td>
+        </tr><tr>
+          <td>google_analytics</td>
+          <td><span class="badge success">success</span></td>
+          <td>2</td>
+          <td>2026-03-16 07:25:59</td>
+        </tr><tr>
+          <td>fx_rates</td>
+          <td><span class="badge success">success</span></td>
+          <td>7</td>
+          <td>2026-03-16 07:25:56</td>
+        </tr><tr>
+          <td>google_analytics</td>
+          <td><span class="badge success">success</span></td>
+          <td>1</td>
+          <td>2026-03-15 19:01:07</td>
+        </tr><tr>
+          <td>fx_rates</td>
+          <td><span class="badge success">success</span></td>
+          <td>7</td>
+          <td>2026-03-15 19:01:04</td>
+        </tr><tr>
+          <td>google_analytics</td>
+          <td><span class="badge success">success</span></td>
+          <td>1</td>
+          <td>2026-03-15 07:35:30</td>
+        </tr><tr>
+          <td>fx_rates</td>
+          <td><span class="badge success">success</span></td>
+          <td>7</td>
+          <td>2026-03-15 07:35:27</td>
+        </tr><tr>
+          <td>google_analytics</td>
+          <td><span class="badge success">success</span></td>
+          <td>1</td>
+          <td>2026-03-15 07:26:50</td>
+        </tr><tr>
+          <td>fx_rates</td>
+          <td><span class="badge success">success</span></td>
+          <td>7</td>
+          <td>2026-03-15 06:58:36</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const grid = '#2a2d3a';
+const text = '#aaa';
+const base = {
+  paper_bgcolor: 'transparent',
+  plot_bgcolor: 'transparent',
+  font: { color: text, size: 11 },
+  margin: { t: 20, r: 10, b: 40, l: 50 },
+  xaxis: { gridcolor: grid, linecolor: grid, tickfont: { color: text } },
+  yaxis: { gridcolor: grid, linecolor: grid, tickfont: { color: text } },
+  legend: { font: { color: text }, bgcolor: 'transparent' },
+};
+
+Plotly.newPlot('chart-trend', [
+  { x: ["2026-03-15"], y: [3], name: 'Sessions', type: 'scatter', mode: 'lines+markers', line: { color: '#6366f1', width: 2 }, marker: { size: 5 } },
+  { x: ["2026-03-15"], y: [3], name: 'Users', type: 'scatter', mode: 'lines+markers', line: { color: '#22d3ee', width: 2 }, marker: { size: 5 } },
+  { x: ["2026-03-15"], y: [806], name: 'Page Views', type: 'scatter', mode: 'lines+markers', line: { color: '#f59e0b', width: 2 }, marker: { size: 5 } },
+], {...base, height: 280}, {responsive: true, displayModeBar: false});
+
+Plotly.newPlot('chart-sources', [
+  { x: [3], y: ["(direct) / (none)"], type: 'bar', orientation: 'h', marker: { color: '#6366f1' } },
+], {...base, height: 260, margin: { t: 20, r: 20, b: 40, l: 140 }}, {responsive: true, displayModeBar: false});
+
+Plotly.newPlot('chart-engagement', [
+  { x: ["2026-03-15"], y: [33.3], name: 'Engagement %', type: 'scatter', mode: 'lines+markers', fill: 'tozeroy', line: { color: '#4ade80', width: 2 }, fillcolor: 'rgba(74,222,128,0.1)' },
+], {...base, height: 260, yaxis: { ...base.yaxis, ticksuffix: '%', range: [0, 100] }}, {responsive: true, displayModeBar: false});
+
+Plotly.newPlot('chart-fx', [
+  { x: ["AUD", "CAD", "EUR", "GBP", "JPY", "NZD", "SGD"], y: [1.4197, 1.3703, 0.87138, 0.75377, 159.33, 1.7158, 1.2796], type: 'bar',
+     marker: { color: ['#6366f1','#22d3ee','#f59e0b','#4ade80','#f87171','#a78bfa','#fb923c'] } },
+], {...base, height: 240, yaxis: { ...base.yaxis, title: 'Rate from USD' }}, {responsive: true, displayModeBar: false});
+</script>
+</body>
+</html>
